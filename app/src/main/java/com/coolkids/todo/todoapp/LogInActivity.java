@@ -1,7 +1,7 @@
 package com.coolkids.todo.todoapp;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 public class LogInActivity extends AppCompatActivity {
 
