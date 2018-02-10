@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
     //  the LoginActivity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        // setContentView(R.layout.activity_main)
         if (hasCredentials())
             goToLoginActivity()
         else
