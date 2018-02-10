@@ -16,16 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main2Activity" />
+        <activity android:name=".LogInActivity" />
         <activity
-            android:name=".FullscreenActivity"
+            android:name=".SignUpActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen"
-            android:parentActivityName=".Main2Activity"
+            android:parentActivityName=".LogInActivity"
             android:theme="@style/FullscreenTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.coolkids.todo.todoapp.Main2Activity" />
+                android:value="com.coolkids.todo.todoapp.LogInActivity" />
         </activity>
     </application>
 
