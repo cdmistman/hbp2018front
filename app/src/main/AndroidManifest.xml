@@ -17,16 +17,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignUpActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_fullscreen"
-            android:parentActivityName=".LogInActivity"
-            android:theme="@style/FullscreenTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.coolkids.todo.todoapp.LogInActivity" />
-        </activity>
-        <activity
             android:name=".LogInActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen"
@@ -35,26 +25,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.coolkids.todo.todoapp.LogInActivity" />
-        </activity>
-        <activity
-            android:name=".CreateEventActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_create_event"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/FullscreenTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.coolkids.todo.todoapp.MainActivity" />
-        </activity>
-        <activity
-            android:name=".share_code"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_share_code"
-            android:parentActivityName=".create_event"
-            android:theme="@style/FullscreenTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.coolkids.todo.todoapp.create_event" />
         </activity>
     </application>
 
