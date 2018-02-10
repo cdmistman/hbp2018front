@@ -46,6 +46,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.coolkids.todo.todoapp.MainActivity" />
         </activity>
+        <activity
+            android:name=".share_code"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_share_code"
+            android:parentActivityName=".create_event"
+            android:theme="@style/FullscreenTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.coolkids.todo.todoapp.create_event" />
+        </activity>
     </application>
 
 </manifest>

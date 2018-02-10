@@ -10,4 +10,6 @@
     <string name="title_activity_join">join</string>
 
     <string name="title_activity_create_event">create_event</string>
+
+    <string name="title_activity_share_code">share_code</string>
 </resources>
