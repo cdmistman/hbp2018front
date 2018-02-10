@@ -9,7 +9,9 @@ public class ServerHandler {
     String server;
     int port;
 
-    public PlannedEvent afjdks;
+    public boolean validateCredentials(String username, String password) {
+        return true;
+    }
 }
 
 

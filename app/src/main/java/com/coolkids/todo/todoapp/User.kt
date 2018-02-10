@@ -6,8 +6,11 @@ package com.coolkids.todo.todoapp
 class User(username: String, firstName: String, lastName: String, password: String, currEvents: List<PlannedEvent>) {
     var uname = username
     var pwd = password
+    var fname = firstName
+    var lname = lastName
+    var events = currEvents
 
     fun verifyCredentials(serverHandler: ServerHandler): Boolean {
-        return serverHandler.
+        return serverHandler.validateCredentials(uname, pwd)
     }
 }
