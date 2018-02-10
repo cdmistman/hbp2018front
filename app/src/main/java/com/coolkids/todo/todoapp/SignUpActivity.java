@@ -96,8 +96,8 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         mVisible = true;
-        mControlsView = findViewById(R.id.signup_content_controls);
-        mContentView = findViewById(R.id.signup_content);
+        //mControlsView = findViewById(R.id.signup_content_controls);
+        //mContentView = findViewById(R.id.signup_content);
 
 
         // Set up the user interaction to manually show or hide the system UI.
