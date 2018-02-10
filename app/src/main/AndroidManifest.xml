@@ -37,6 +37,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.coolkids.todo.todoapp.LogInActivity" />
         </activity>
+        <activity
+            android:name=".Main"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_main"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>
