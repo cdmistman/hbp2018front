@@ -7,7 +7,7 @@
     android:background="#FAFAFA"
     tools:context="com.coolkids.todo.todoapp.MainActivity">
 
-    <EditText
+    <TextView
         android:id="@+id/editText1"
         android:layout_width="350dp"
         android:layout_height="75dp"
@@ -21,7 +21,7 @@
         android:textColor="#212121"
         android:textSize="40dp" />
 
-    <EditText
+    <TextView
         android:id="@+id/editText2"
         android:layout_width="350dp"
         android:layout_height="100dp"
@@ -33,7 +33,7 @@
         android:textColor="#212121"
         android:textSize="40dp" />
 
-    <EditText
+    <TextView
         android:id="@+id/editText3"
         android:layout_width="350dp"
         android:layout_height="100dp"

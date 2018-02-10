@@ -38,19 +38,14 @@
                 android:value="com.coolkids.todo.todoapp.LogInActivity" />
         </activity>
         <activity
-            android:name=".Main"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_main"
-            android:theme="@style/FullscreenTheme" />
-        <activity
             android:name=".join"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_join"
-            android:parentActivityName=".Main"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/FullscreenTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.coolkids.todo.todoapp.Main" />
+                android:value="com.coolkids.todo.todoapp.MainActivity" />
         </activity>
         <activity
             android:name=".create_event"
