@@ -14,17 +14,17 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@+id/cardView"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="119dp"
+        android:layout_marginTop="59dp"
         app:srcCompat="@drawable/hbnp" />
 
     <EditText
         android:id="@+id/editText"
         android:layout_width="200dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/imageView2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="48dp"
@@ -35,12 +35,12 @@
         android:inputType="textPersonName"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
         android:textColorHint="#757575"
-        android:textSize="16dp" />
+        android:textSize="25dp" />
 
     <EditText
         android:id="@+id/editText2"
         android:layout_width="200dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_alignStart="@+id/editText"
         android:layout_below="@+id/editText"
         android:layout_marginTop="31dp"
@@ -51,7 +51,7 @@
         android:inputType="textPassword"
         android:textAppearance="@android:style/TextAppearance.Small"
         android:textColorHint="#757575"
-        android:textSize="16dp" />
+        android:textSize="25dp" />
 
     <TextView
         android:id="@+id/textView3"
@@ -70,7 +70,7 @@
         android:layout_height="50dp"
         android:layout_above="@+id/textView3"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="61dp"
+        android:layout_marginBottom="41dp"
         app:cardBackgroundColor="#0091EA"
         app:cardElevation="10dp">
 
