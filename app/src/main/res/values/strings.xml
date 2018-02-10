@@ -6,4 +6,8 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="title_activity_main">Main</string>
+
+    <string name="title_activity_join">join</string>
+
+    <string name="title_activity_create_event">create_event</string>
 </resources>
