@@ -41,7 +41,7 @@ class ServerHandler private constructor() {
     }
 
     fun makeObjRequest(method:Int, url: String, params: Map<String, String>,
-                       callback: (JSONObject) -> Unit, errCallback: Response.ErrorListener?) {
+                       callback: (JSONObject) -> Unit, errCallback: (VolleyError?)->Unit) {
         val request = JsonObjectRequest(
                 Request.Method.POST, server + url, JSONObject(params),
                 object: Response.Listener<JSONObject>{
@@ -51,7 +51,8 @@ class ServerHandler private constructor() {
                 },
                 object:Response.ErrorListener{
                     override fun onErrorResponse(error: VolleyError?) {
-                        Log.e("Fetchevents",error.toString())
+                        Log.e("Network Requests: ",error.toString())
+                        errCallback(error)
                     }
                 });
 
@@ -62,7 +63,7 @@ class ServerHandler private constructor() {
 
     fun newUser(firstName: String, lastName: String, username: String,
                 email: String, password: String,
-                callback: (AppUser) -> Unit, errCallback: Response.ErrorListener?) {
+                callback: (AppUser) -> Unit, errCallback: (VolleyError?)->Unit = {_->}) {
         val req = HashMap<String, String>()
         req["firstName"] = firstName
         req["lastName"] = lastName
@@ -76,22 +77,23 @@ class ServerHandler private constructor() {
 
         makeObjRequest(
                 Request.Method.POST,"/users", req,
-                jsArrToEvents, errCallback)
+                jsArrToEvents, errCallback);
     }
 
-    fun fetchEvents(callback:(ArrayList<PlannedEvent>) -> Unit) {
-        Log.d("Fetchevents","A")
+    fun fetchEvents(callback:(ArrayList<PlannedEvent>) -> Unit,  errCallback: (VolleyError?)->Unit = {_->}) {
         val jsArrToEvents = { jsobj: JSONObject ->
             val jsarr = jsobj.getJSONArray("events");
-            val f : String = jsarr.toString();
-            Log.d("Fetchevents",f)
             var ret: ArrayList<PlannedEvent> = ArrayList<PlannedEvent>()
             for (i in 0..jsarr.length() - 1) {
                 ret.add(PlannedEvent(jsarr.getJSONObject(i)))
             }
             callback(ret)
         }
-        makeObjRequest(Request.Method.POST,"/events/all", addCredentials(HashMap<String,String>()),jsArrToEvents,null);
+        makeObjRequest(Request.Method.POST,"/events/all", addCredentials(HashMap<String,String>()),jsArrToEvents,errCallback);
+    }
+
+    fun createNewEvent(callBack:(PlannedEvent) -> Unit){
+
     }
 
     companion object {

@@ -55,7 +55,7 @@ class SignUpActivity : AppCompatActivity() {
             serverHandler?.newUser(firstNameField.text.toString(),
                     lastNameField.text.toString(), userNameField.text.toString(),
                     emailField.text.toString(), passwordField.text.toString(),
-                    { TODO() },null)
+                    { TODO() })
         } catch (e: NullPointerException) {
             throw NullPointerException("You didn't initialize the serverHandler!")
         }
