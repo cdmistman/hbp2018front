@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity
  * status bar and navigation/system bar) with user interaction.
  */
 class CreateEventActivity : AppCompatActivity() {
-    
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
