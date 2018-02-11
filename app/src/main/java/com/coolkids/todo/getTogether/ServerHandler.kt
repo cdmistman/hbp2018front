@@ -29,14 +29,14 @@ class ServerHandler private constructor() {
     }
 
 
-    fun addCredentials(m: Map<String, String>): Map<String, String> {
+    fun addCredentials(m: Map<String, String?>): Map<String, String?> {
         var n = HashMap(m)
         n["uname"] = uname
         n["password"] = pass
         return n
     }
 
-    fun makeObjRequest(method:Int, url: String, params: Map<String, String>,
+    fun makeObjRequest(method:Int, url: String, params: Map<String, String?>,
                        callback: (JSONObject) -> Unit, errCallback: (VolleyError?)->Unit) {
         val request = JsonObjectRequest(
                 Request.Method.POST, server + url, JSONObject(params),
@@ -122,7 +122,23 @@ class ServerHandler private constructor() {
     }
 
     fun createTask (eventId: String, name: String, description: String, callBack:(ToDoTask) -> Unit, errCallback: (VolleyError?)->Unit = {_->}){
+        makeObjRequest(Request.Method.POST,"/tasks",addCredentials(mapOf("eventId" to eventId, "name" to name, "description" to description)),
+                {jsobj->callBack(ToDoTask(jsobj))},errCallback);
+    }
 
+    fun editTask (taskId: Int, name: String, description: String, callback: (ToDoTask) -> Unit, errCallback: (VolleyError?)->Unit = {_->}){
+        makeObjRequest(Request.Method.PUT,"/tasks/"+taskId,addCredentials(mapOf("name" to name, "description" to description)),
+                {jsobj->callback(ToDoTask(jsobj))},errCallback);
+    }
+
+    fun assignTask (taskId: Int, assignTo: String?, callback: (ToDoTask) -> Unit, errCallback: (VolleyError?)->Unit = {_->}){
+        makeObjRequest(Request.Method.PUT,"/tasks/"+taskId,addCredentials(mapOf("assigned" to assignTo)),
+                {jsobj->callback(ToDoTask(jsobj))},errCallback)
+    }
+
+    fun deleteTask (taskId: Int, callBack:(JSONObject) -> Unit, errCallback: (VolleyError?)->Unit = {_->}){
+        makeObjRequest(Request.Method.DELETE,"/tasks/"+taskId, addCredentials(mapOf()),
+                callBack,errCallback)
     }
 
     companion object {
