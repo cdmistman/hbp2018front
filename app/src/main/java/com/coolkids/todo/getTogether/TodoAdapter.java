@@ -1,6 +1,8 @@
 package com.coolkids.todo.getTogether;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.*;
 
@@ -15,12 +17,15 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView title, description, date;
+        public RelativeLayout event_row;
 
         public ViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.title);
             description = view.findViewById(R.id.description);
             date = view.findViewById(R.id.date);
+            event_row = view.findViewById(R.id.event_row);
+
         }
     }
 
@@ -36,11 +41,23 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        PlannedEvent event = events.get(position);
+    public void onBindViewHolder(final ViewHolder holder, int position) {
+        final PlannedEvent event = events.get(position);
         holder.title.setText(event.getName());
         holder.description.setText(event.description);
         holder.date.setText(event.getEventDate());
+
+
+        View.OnClickListener buttonListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              Intent intent = new Intent(v.getContext(), EventActivity.class);
+              intent.putExtra("EVENT_ID", event.eventID);
+              v.getContext().startActivity(intent);
+            }
+        };
+        holder.event_row.setOnClickListener(buttonListener);
+
     }
 
     @Override

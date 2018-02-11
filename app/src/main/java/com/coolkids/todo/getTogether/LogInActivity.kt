@@ -72,6 +72,7 @@ class LogInActivity : AppCompatActivity() {
                                     putString("password", passwordEntered)
                                     commit()
                                 }
+                                ServerHandler.serverHandler.saveCredentials(usernameEntered,passwordEntered)
                                 goToMain()
                             },
                             { e-> invalidUser() })

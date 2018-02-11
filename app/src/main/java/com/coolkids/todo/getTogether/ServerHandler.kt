@@ -29,6 +29,7 @@ class ServerHandler private constructor() {
     }
 
     fun saveCredentials(username: String, password: String){
+        Log.d("Saved credentials ", username)
         this.uname = username
         this.pass= password
     }

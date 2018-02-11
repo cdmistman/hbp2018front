@@ -29,7 +29,7 @@ class CreateEventActivity : AppCompatActivity() {
 
         eventNameField = findViewById(R.id.create_task_event_name)
         eventDescriptionField = findViewById(R.id.create_task_title)
-        eventDateField = findViewById(R.id.event_date)
+        eventDateField = findViewById(R.id.event_time)
         eventLocationField = findViewById(R.id.event_location)
 
         serverHandler = ServerHandler.serverHandler
