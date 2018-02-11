@@ -1,6 +1,8 @@
 package com.coolkids.todo.todoapp;
 
 
+import java.util.ArrayList;
+
 /**
  * Handles the interactions with the server
  */
@@ -16,6 +18,11 @@ public class ServerHandler {
     public void newUser(String firstName, String lastName, String username,
                         String email, String password) {
         //TODO
+    }
+
+    public ArrayList<PlannedEvent> fetchEvents() {
+        //TODO
+        return null;
     }
 }
 

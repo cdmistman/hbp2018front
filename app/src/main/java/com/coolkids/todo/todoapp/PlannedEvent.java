@@ -100,4 +100,12 @@ public class PlannedEvent {
         }
         return parsedTasks;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEventDate() {
+        return eventDate;
+    }
 }
