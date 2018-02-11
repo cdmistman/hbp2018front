@@ -29,9 +29,10 @@
                 android:value="com.coolkids.todo.getTogether.LogInActivity" />
         </activity>
         <activity
-            android:name=".FullscreenActivity"
+            android:name=".CreateTaskActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen"
+<<<<<<< HEAD
             android:theme="@style/FullscreenTheme"></activity>
 
         <activity
@@ -56,6 +57,14 @@
         <activity
             android:name=".JoinCreateActivity"
             android:screenOrientation="portrait" />
+=======
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".EventActivity"
+            android:label="@string/title_activity_event"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".EventActivity"></activity>
+>>>>>>> e6817c54110b8d3a75ffead9545b0f0c22e16b38
     </application>
 
 </manifest>

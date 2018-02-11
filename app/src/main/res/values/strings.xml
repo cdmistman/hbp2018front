@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">To Do App</string>
+    <string name="app_name">Get Together</string>
 
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
@@ -20,4 +20,6 @@
     <string name="join_game_button">Join</string>
     <string name="invite_text">Share this code with friends so they can join the event.</string>
     <string name="create_task">Create Task</string>
+    <string name="title_activity_event">EventActivity</string>
+    <string name="list_tasks">List of Tasks</string>
 </resources>

@@ -27,8 +27,8 @@ class CreateEventActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_createevent)
 
-        eventNameField = findViewById(R.id.event_name)
-        eventDescriptionField = findViewById(R.id.event_description)
+        eventNameField = findViewById(R.id.create_task_event_name)
+        eventDescriptionField = findViewById(R.id.create_task_title)
         eventDateField = findViewById(R.id.event_date)
         eventLocationField = findViewById(R.id.event_location)
 

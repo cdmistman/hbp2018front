@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/create_task_header"
         android:layout_width="400dp"
         android:layout_height="64dp"
         android:layout_marginEnd="16dp"
@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/create_event_button"
+        android:id="@+id/create_task_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -58,7 +58,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/event_description"
+        android:id="@+id/create_task_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -72,10 +72,10 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/event_name" />
+        app:layout_constraintTop_toBottomOf="@+id/create_task_event_name" />
 
     <EditText
-        android:id="@+id/event_name"
+        android:id="@+id/create_task_event_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -88,7 +88,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+        app:layout_constraintTop_toBottomOf="@+id/create_task_header" />
 
     <EditText
         android:id="@+id/event_location"
@@ -111,6 +111,22 @@
         android:id="@+id/event_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
+=======
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Date"
+        android:inputType="date"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_task_title" />
+
+    <EditText
+        android:id="@+id/event_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+>>>>>>> e6817c54110b8d3a75ffead9545b0f0c22e16b38
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
@@ -118,9 +134,15 @@
         android:hint="Date/Time"
         android:inputType="text|datetime"
         app:layout_constraintEnd_toEndOf="parent"
+<<<<<<< HEAD
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/event_description" />
+=======
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/event_date"
+        app:layout_constraintTop_toBottomOf="@+id/create_task_title" />
+>>>>>>> e6817c54110b8d3a75ffead9545b0f0c22e16b38
 
     <TextView
         android:id="@+id/cant_create_event_error"
@@ -132,7 +154,11 @@
         android:text="Unable to create Event!"
         android:textColor="@color/colorAccent"
         android:visibility="gone"
+<<<<<<< HEAD
         app:layout_constraintBottom_toTopOf="@+id/go_to_main_button"
+=======
+        app:layout_constraintBottom_toTopOf="@+id/create_task_button"
+>>>>>>> e6817c54110b8d3a75ffead9545b0f0c22e16b38
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
