@@ -21,13 +21,17 @@ class ServerHandler private constructor() {
     internal var queue: RequestQueue = RequestQueue(cache, network)
     internal var server: String = "https://hbptodoapp.herokuapp.com"
     internal var port: Int = 80
-    internal var uname: String = "joe9"
-    internal var pass: String = "secret"
+    internal var uname: String = ""
+    internal var pass: String = ""
 
     init {
         queue.start()
     }
 
+    fun saveCredentials(username: String, password: String){
+        this.uname = username
+        this.pass= password
+    }
 
     fun addCredentials(m: Map<String, String?>): Map<String, String?> {
         var n = HashMap(m)

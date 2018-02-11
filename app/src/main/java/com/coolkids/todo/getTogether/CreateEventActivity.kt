@@ -47,8 +47,8 @@ class CreateEventActivity : AppCompatActivity() {
         val eventLocation = eventLocationField!!.text.toString()
         serverHandler!!.createNewEvent(eventName, eventDate, eventDescription, eventLocation,
                 { event: PlannedEvent ->
-                    val goToMainActivity = Intent(this@CreateEventActivity, MainActivity::class.java)
-                    this@CreateEventActivity.startActivity(goToMainActivity)
+                    val goToMainActivity = Intent(this, MainActivity::class.java)
+                    this.startActivity(goToMainActivity)
                 },
                 { e: VolleyError? ->
                     val netresp = e?.networkResponse?.data?: ByteArray(0)

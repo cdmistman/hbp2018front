@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import kotlin.math.sign
 
 
 /**
@@ -28,35 +29,25 @@ class LogInActivity : AppCompatActivity() {
 
     // SharedPreferences stuff
     private val USER_ACC_INFO = "UserAccount"
-    var editor: SharedPreferences.Editor? = null
-    var reader: SharedPreferences? = null
+    lateinit var reader: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        reader = this.getPreferences(Context.MODE_PRIVATE)
+
         // Not sure how to init the server handler?
         // this.serverHandler = ServerHandler.init
+        if(reader.contains("user_name") && reader.contains("password")){
+            signIn(reader.getString("user_name",null), reader.getString("password",null))
+        }
 
         usernameLogInField = findViewById<EditText>(R.id.username_login_field)
         passwordLogInField = findViewById<EditText>(R.id.password_login_field)
 
         loginButton = findViewById<Button>(R.id.log_in_button)
         registerButton = findViewById<Button>(R.id.register_button)
-
-        // init the Shared Preferences stuff
-        editor = getSharedPreferences(USER_ACC_INFO, Context.MODE_PRIVATE).edit()
-        reader = getSharedPreferences(USER_ACC_INFO, Context.MODE_PRIVATE)
-
-        // Check to see if the user is already signed in
-        val tempFName: String? = reader!!.getString("first_name", "")
-        val tempLName: String? = reader!!.getString("last_name", "")
-        val tempUName: String? = reader!!.getString("user_name", "")
-        val tempEmail: String? = reader!!.getString("user_email", "")
-        val tempPwd: String? = reader!!.getString("password", "")
-        // this.serverHandler.validateCredentials(tempUName,
-        //          tempPwd, { u -> alreadySignedIn(u) },
-        //          {  })
     }
 
     fun alreadySignedIn(v: View) {
@@ -68,11 +59,30 @@ class LogInActivity : AppCompatActivity() {
         var usernameEntered = usernameLogInField!!.text.toString()
         var passwordEntered = passwordLogInField!!.text.toString()
 
-        //this.serverHandler
-        //            .validateCredentials(usernameEntered, passwordEntered,
-        //                    { u -> validUser(u, this.editor) },
-        //                    {  })
+        signIn(usernameEntered,passwordEntered)
     }
+
+    fun signIn(usernameEntered:String, passwordEntered:String){
+
+        ServerHandler.serverHandler
+                    .validateCredentials(usernameEntered, passwordEntered,
+                            { u ->
+                                with(reader.edit()){
+                                    putString("user_name", usernameEntered)
+                                    putString("password", passwordEntered)
+                                    commit()
+                                }
+                                goToMain()
+                            },
+                            { e-> invalidUser() })
+    }
+
+
+    fun goToMain(){
+        val intent = Intent(this@LogInActivity, MainActivity::class.java)
+        startActivity(intent)
+    }
+
 
     fun validUser(u: User, e: SharedPreferences.Editor) {
         e.putString("first_name", u.fname)
@@ -82,10 +92,11 @@ class LogInActivity : AppCompatActivity() {
         e.apply()
 
         val goToJoinCreateActivity = Intent(this@LogInActivity, JoinCreateActivity::class.java)
+        ServerHandler.serverHandler.saveCredentials(u.uname, u.pwd)
         this@LogInActivity.startActivity(goToJoinCreateActivity)
     }
 
-    fun invalidUser(v: View) {
+    fun invalidUser() {
         val invalidCreds = findViewById<TextView>(R.id.invalid_creds_error)
         invalidCreds.visibility = View.VISIBLE
     }
