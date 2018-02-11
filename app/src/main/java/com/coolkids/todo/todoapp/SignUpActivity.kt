@@ -11,7 +11,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import com.android.volley.Response
+import com.android.volley.VolleyError
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -77,7 +77,9 @@ class SignUpActivity : AppCompatActivity() {
                     editor.putString("user_email", it.email)
                     editor.apply()
                 },
-                Response.ErrorListener { TODO() })
+                { it: VolleyError? ->
+                    TODO()
+                })
         val intent = Intent(this, JoinCreateActivity::class.java)
         startActivity(intent)
     }
