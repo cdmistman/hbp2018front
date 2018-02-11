@@ -14,7 +14,7 @@ class ToDoTask {
     var completed = false
     var assignedTo : AppUser? = null
 
-    constructor(taskID: Int, taskName: String, taskDescription: String, isCompleted:Boolean, taskAssigned: Boolean, taskAssignedTo: AppUser){
+    constructor(taskID: Int, taskName: String, taskDescription: String, isCompleted:Boolean, taskAssigned: Boolean, taskAssignedTo: AppUser?){
         id = taskID
         name=taskName
         description=taskDescription

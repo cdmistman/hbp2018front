@@ -1,5 +1,6 @@
 package com.coolkids.todo.getTogether
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -14,13 +15,13 @@ class CreateTaskActivity : AppCompatActivity() {
     private var taskDescription: EditText? = null
     private var eventTitle: TextView? = null
 
-    var parentEventTitle: String? = null
+
     var parentEventId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        parentEventTitle = intent.getStringExtra("PARENT_EVENT")
+
         parentEventId = intent.getStringExtra("PARENT_ID")
 
         setContentView(R.layout.activity_createtask)
@@ -28,16 +29,16 @@ class CreateTaskActivity : AppCompatActivity() {
         taskTitle = findViewById(R.id.create_task_title)
         taskDescription = findViewById(R.id.create_task_description)
         eventTitle = findViewById(R.id.create_task_event_name)
-        eventTitle!!.text = parentEventTitle
+
     }
 
     fun createTask(v: View) {
         serverHandler.createTask(parentEventId!!,
                 taskTitle!!.text.toString(), taskDescription!!.text.toString(),
                 { t: ToDoTask ->
-                    TODO()
-                    //val goToEventActivity = Intent(this@CreateTaskActivity, EventActivity::class.java)
-                    //this@CreateTaskActivity.startActivity(goToEventActivity)
+                    val goToEventActivity = Intent(this@CreateTaskActivity, EventActivity::class.java)
+                    goToEventActivity.putExtra("EVENT_ID",parentEventId)
+                    this@CreateTaskActivity.startActivity(goToEventActivity)
                 },
                 { e: VolleyError? ->
                     val cantCreateTaskError = findViewById<TextView>(R.id.cant_create_event_error)

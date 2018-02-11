@@ -64,13 +64,14 @@ public class PlannedEvent {
             String description;
             try {
                 thisTask = tasksJSON.getJSONObject(i);
-                id = thisTask.getInt("task id");
+                id = thisTask.getInt("id");
                 name = thisTask.getString("name");
                 completed = thisTask.getBoolean("completed");
                 description = thisTask.getString("description");
-                isAssigned = thisTask.getBoolean("is assigned");
+                isAssigned = thisTask.getBoolean("isAssigned");
             }
             catch (JSONException e) {
+                Log.e("parseTasks",e.getMessage());
                 throw new IllegalArgumentException("The JSONObject received from" +
                         " the server doesn't have the right names lol");
             }

@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         mRecyclerView!!.adapter = mAdapter
 
         Log.d("EventsList", events.toString())
-        var noEventsText = findViewById<TextView>(R.id.title_text)
+        var noEventsText = findViewById<TextView>(R.id.no_tasks_text)
         if(events.isEmpty()){
             noEventsText.visibility = TextView.VISIBLE
         } else{
