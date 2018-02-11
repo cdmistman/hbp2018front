@@ -1,9 +1,7 @@
 package com.coolkids.todo.todoapp
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.support.v4.app.NavUtils
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
@@ -17,9 +15,6 @@ import android.widget.TextView
  * status bar and navigation/system bar) with user interaction.
  */
 class SignUpActivity : AppCompatActivity() {
-
-
-
     /**
      * Touch listener to use for in-layout UI controls to delay hiding the
      * system UI. This is to prevent the jarring behavior of controls going away
