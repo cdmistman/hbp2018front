@@ -15,9 +15,9 @@
     <string name="main_empty">No events</string>
     <string name="create_event">Create Event</string>
     <string name="create_button_text">Create</string>
-    <string name="ender_code_below">Enter your code to join the game</string>
+    <string name="ender_code_below">Enter your code to join the event</string>
     <string name="code_hint">Code</string>
-    <string name="join_game_button">Join Game</string>
+    <string name="join_game_button">Join</string>
     <string name="invite_text">Share this code with friends so they can join the event.</string>
     <string name="create_task">Create Task</string>
 </resources>
