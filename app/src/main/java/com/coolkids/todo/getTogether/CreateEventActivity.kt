@@ -3,6 +3,7 @@ package com.coolkids.todo.getTogether
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -29,25 +30,29 @@ class CreateEventActivity : AppCompatActivity() {
         eventNameField = findViewById(R.id.event_name)
         eventDescriptionField = findViewById(R.id.event_description)
         eventDateField = findViewById(R.id.event_date)
-        eventTimeField = findViewById(R.id.event_time)
         eventLocationField = findViewById(R.id.event_location)
 
         serverHandler = ServerHandler.serverHandler
     }
 
-    fun publishEvent() {
+    fun goToMain(v : View){
+        val goToMain = Intent(this, MainActivity::class.java)
+        startActivity(goToMain)
+    }
+
+    fun publishEvent(v : View) {
         val eventName = eventNameField!!.text.toString()
         val eventDescription = eventDescriptionField!!.text.toString()
         val eventDate = eventDateField!!.text.toString()
-        val eventTime = eventTimeField!!.text.toString()
-        val eventDateAndTime = eventDate + "T" + eventTime + "Z"
         val eventLocation = eventLocationField!!.text.toString()
-        serverHandler!!.createNewEvent(eventName, eventDateAndTime, eventDescription, eventLocation,
+        serverHandler!!.createNewEvent(eventName, eventDate, eventDescription, eventLocation,
                 { event: PlannedEvent ->
                     val goToMainActivity = Intent(this@CreateEventActivity, MainActivity::class.java)
                     this@CreateEventActivity.startActivity(goToMainActivity)
                 },
                 { e: VolleyError? ->
+                    val netresp = e?.networkResponse?.data?: ByteArray(0)
+                    Log.e("Network request", String(netresp))
                     val cantCreateEventError = findViewById<TextView>(R.id.cant_create_event_error)
                     cantCreateEventError.visibility = View.VISIBLE
                 })

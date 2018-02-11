@@ -14,13 +14,13 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
     private ArrayList<PlannedEvent> events;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, date;
+        public TextView title, description, date;
 
         public ViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.title);
+            description = view.findViewById(R.id.description);
             date = view.findViewById(R.id.date);
-
         }
     }
 
@@ -39,6 +39,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         PlannedEvent event = events.get(position);
         holder.title.setText(event.getName());
+        holder.description.setText(event.description);
         holder.date.setText(event.getEventDate());
     }
 

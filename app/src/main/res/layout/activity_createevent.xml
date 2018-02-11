@@ -33,10 +33,28 @@
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
+        android:background="@color/colorPrimary"
         android:onClick="publishEvent"
         android:text="@string/create_button_text"
+        android:textColor="@color/cardview_light_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/go_to_main_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:background="?attr/colorButtonNormal"
+        android:onClick="goToMain"
+        android:text="Cancel"
+        app:layout_constraintBottom_toTopOf="@+id/create_event_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -48,7 +66,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Description"
-        android:inputType="textMultiLine"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.641"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -93,29 +111,15 @@
         android:id="@+id/event_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Date"
-        android:inputType="date"
+        android:hint="Date/Time"
+        android:inputType="text|datetime"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/event_description" />
-
-    <EditText
-        android:id="@+id/event_time"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Time"
-        android:inputType="time"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/event_date"
         app:layout_constraintTop_toBottomOf="@+id/event_description" />
 
     <TextView
@@ -128,7 +132,7 @@
         android:text="Unable to create Event!"
         android:textColor="@color/colorAccent"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/create_event_button"
+        app:layout_constraintBottom_toTopOf="@+id/go_to_main_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
