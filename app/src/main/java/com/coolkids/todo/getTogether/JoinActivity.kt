@@ -18,7 +18,7 @@ class JoinActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_join)
-        
+
     }
 
     fun attemptJoin(v : View){
