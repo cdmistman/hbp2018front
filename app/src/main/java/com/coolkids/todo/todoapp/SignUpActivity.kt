@@ -1,6 +1,8 @@
 package com.coolkids.todo.todoapp
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.NavUtils
 import android.support.v7.app.AppCompatActivity
@@ -9,6 +11,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.android.volley.Response
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -24,53 +27,69 @@ class SignUpActivity : AppCompatActivity() {
     private val confirmButton = findViewById<Button>(R.id.confirm_button)
 
     // User's information fields
-    private val firstNameField = findViewById<EditText>(R.id.first_name_field)
-    private val lastNameField = findViewById<EditText>(R.id.last_name_field)
-    private val userNameField = findViewById<EditText>(R.id.username_field)
-    private val emailField = findViewById<EditText>(R.id.email_field)
-    private val passwordField = findViewById<EditText>(R.id.password_field)
-    private val passwordConfirmField = findViewById<EditText>(R.id.confirm_password_field)
+    private var firstNameField: EditText? = null
+    private var lastNameField: EditText? = null
+    private var userNameField: EditText? = null
+    private var emailField: EditText? = null
+    private var passwordField: EditText? = null
+    private var passwordConfirmField: EditText? = null
 
     // error text
-    private val errorText = findViewById<TextView>(R.id.error_text)
+    private var errorText: TextView? = null
 
     // server handler for communicating with the server
-    var serverHandler : ServerHandler? = null
+    private var serverHandler: ServerHandler? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_signup)
+
+        firstNameField = findViewById<EditText>(R.id.first_name_field)
+        lastNameField = findViewById<EditText>(R.id.last_name_field)
+        userNameField = findViewById<EditText>(R.id.username_field)
+        emailField = findViewById<EditText>(R.id.email_field)
+        passwordField = findViewById<EditText>(R.id.password_field)
+        passwordConfirmField = findViewById<EditText>(R.id.confirm_password_field)
+
+        errorText = findViewById<TextView>(R.id.error_text)
+
     }
 
     fun confirmCredentials(v: View) {
         if (checkCredentials())
             createUser()
         else
-            errorText.visibility = View.VISIBLE
+            errorText!!.visibility = View.VISIBLE
     }
 
     fun createUser() {
-        try {
-            serverHandler?.newUser(firstNameField.text.toString(),
-                    lastNameField.text.toString(), userNameField.text.toString(),
-                    emailField.text.toString(), passwordField.text.toString(),
-                    { TODO() },null)
-        } catch (e: NullPointerException) {
-            throw NullPointerException("You didn't initialize the serverHandler!")
-        }
+        serverHandler?.newUser(firstNameField!!.text.toString(),
+                lastNameField!!.text.toString(),
+                userNameField!!.text.toString(),
+                emailField!!.text.toString(),
+                passwordField!!.text.toString(),
+                { it: AppUser ->
+                    val editor : SharedPreferences.Editor = getSharedPreferences("UserAccount", Context.MODE_PRIVATE).edit()
+                    editor.putString("first_name", it.fname)
+                    editor.putString("last_name", it.lname)
+                    editor.putString("user_name", it.uname)
+                    editor.putString("user_email", it.email)
+                    editor.apply()
+                },
+                Response.ErrorListener { TODO() })
         val intent = Intent(this, JoinCreateActivity::class.java)
         startActivity(intent)
     }
 
     fun checkCredentials(): Boolean {
-        var firstNameValid = true
-        var lastNameValid = true
-        var userNameValid = true
-        var userNameAvailable = true
-        var emailValid = true
-        var passwordValid = true
-        var passwordConfirmed = (passwordField.equals(passwordConfirmField))
+        val firstNameValid = true
+        val lastNameValid = true
+        val userNameValid = true
+        val userNameAvailable = true
+        val emailValid = true
+        val passwordValid = true
+        val passwordConfirmed = passwordField == passwordConfirmField
         return firstNameValid &&
                 lastNameValid &&
                 userNameValid &&
@@ -89,5 +108,4 @@ class SignUpActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
 }
