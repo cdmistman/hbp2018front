@@ -1,12 +1,7 @@
-package com.coolkids.todo.todoapp
+package com.coolkids.todo.getTogether
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Handler
-import android.support.v4.app.NavUtils
 import android.support.v7.app.AppCompatActivity
-import android.view.MenuItem
-import android.view.View
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.

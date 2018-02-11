@@ -1,4 +1,4 @@
-package com.coolkids.todo.todoapp;
+package com.coolkids.todo.getTogether;
 
 import android.util.Log;
 

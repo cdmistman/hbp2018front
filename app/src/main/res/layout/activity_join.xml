@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FAFAFA"
-    tools:context="com.coolkids.todo.todoapp.JoinActivity"
+    tools:context="com.coolkids.todo.getTogether.JoinActivity"
     android:id="@+id/relativeLayout3">
 
 

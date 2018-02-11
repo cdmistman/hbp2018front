@@ -1,16 +1,14 @@
-package com.coolkids.todo.todoapp
+package com.coolkids.todo.getTogether
 
 
 import android.util.Log
 import com.android.volley.*
-import com.android.volley.toolbox.*
-import org.json.JSONArray
-
+import com.android.volley.toolbox.BasicNetwork
+import com.android.volley.toolbox.HurlStack
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.NoCache
 import org.json.JSONObject
-
-import java.util.ArrayList
-import java.util.HashMap
-import java.util.function.Consumer
+import java.util.*
 
 
 /**

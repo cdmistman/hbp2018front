@@ -1,4 +1,4 @@
-package com.coolkids.todo.todoapp;
+package com.coolkids.todo.getTogether;
 
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;

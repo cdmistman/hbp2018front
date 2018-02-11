@@ -1,4 +1,4 @@
-package com.coolkids.todo.todoapp
+package com.coolkids.todo.getTogether
 
 /**
  * Created by colton on 2/10/18.
