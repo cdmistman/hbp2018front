@@ -12,6 +12,11 @@ public class ServerHandler {
     public boolean validateCredentials(String username, String password) {
         return true;
     }
+
+    public void newUser(String firstName, String lastName, String username,
+                        String email, String password) {
+        //TODO
+    }
 }
 
 

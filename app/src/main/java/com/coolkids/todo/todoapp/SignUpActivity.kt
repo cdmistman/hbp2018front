@@ -7,6 +7,9 @@ import android.support.v4.app.NavUtils
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -49,6 +52,23 @@ class SignUpActivity : AppCompatActivity() {
         false
     }
 
+    // Register button
+    private val confirmButton = findViewById<Button>(R.id.cardView2)
+
+    // User's information fields
+    private val firstNameField = findViewById<EditText>(R.id.textView4)
+    private val lastNameField = findViewById<EditText>(R.id.textView6)
+    private val userNameField = findViewById<EditText>(R.id.textView7)
+    private val emailField = findViewById<EditText>(R.id.textView8)
+    private val passwordField = findViewById<EditText>(R.id.textView9)
+    private val passwordConfirmField = findViewById<EditText>(R.id.textView10)
+
+    // error text
+    private val errorText = findViewById<TextView>(R.id.error_text)
+
+    // server handler for communicating with the server
+    var serverHandler : ServerHandler? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -57,12 +77,43 @@ class SignUpActivity : AppCompatActivity() {
         actionBar?.setDisplayHomeAsUpEnabled(true)
 
         mVisible = true
-        //mControlsView = findViewById(R.id.signup_content_controls);
-        //mContentView = findViewById(R.id.signup_content);
-
 
         // Set up the user interaction to manually show or hide the system UI.
         mContentView!!.setOnClickListener { toggle() }
+    }
+
+    fun confirmCredentials(v: View) {
+        if (checkCredentials())
+            createUser()
+        else
+            errorText.visibility = View.VISIBLE
+    }
+
+    fun createUser() {
+        try {
+            serverHandler?.newUser(firstNameField.text.toString(),
+                    lastNameField.text.toString(), userNameField.text.toString(),
+                    emailField.text.toString(), passwordField.text.toString())
+        } catch (e: NullPointerException) {
+            throw NullPointerException("You didn't initialize the serverHandler!")
+        }
+    }
+
+    fun checkCredentials(): Boolean {
+        var firstNameValid = true
+        var lastNameValid = true
+        var userNameValid = true
+        var userNameAvailable = true
+        var emailValid = true
+        var passwordValid = true
+        var passwordConfirmed = true
+        return firstNameValid &&
+                lastNameValid &&
+                userNameValid &&
+                userNameAvailable &&
+                emailValid &&
+                passwordValid &&
+                passwordConfirmed
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
