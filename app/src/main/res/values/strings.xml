@@ -18,4 +18,5 @@
     <string name="ender_code_below">Enter your code to join the game</string>
     <string name="code_hint">Code</string>
     <string name="join_game_button">Join Game</string>
+    <string name="invite_text">Share this code with friends so they can join the event.</string>
 </resources>
