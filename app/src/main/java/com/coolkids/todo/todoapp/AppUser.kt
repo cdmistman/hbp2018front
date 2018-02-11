@@ -22,9 +22,9 @@ class AppUser {
         val firstName: String
         val lastName: String
         try {
-            username = userJSON.getString("username")
-            firstName = userJSON.getString("first name")
-            lastName = userJSON.getString("last name")
+            username = userJSON.getString("uname")
+            firstName = userJSON.getString("firstName")
+            lastName = userJSON.getString("lastName")
         } catch (e: JSONException) {
             throw IllegalArgumentException("The JSONObject received from" + " the server doesn't have the right names lol")
         }

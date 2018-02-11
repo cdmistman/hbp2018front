@@ -23,7 +23,7 @@ public class PlannedEvent {
         try {
             this.name = serverJSON.getString("title");
             this.owner = new AppUser(serverJSON.getJSONObject("owner"));
-            this.eventID = serverJSON.getString("event ID");
+            this.eventID = serverJSON.getString("eventCode");
             this.users = parseUsers(serverJSON.getJSONArray("users"));
             this.tasks = parseTasks(serverJSON.getJSONArray("tasks"));
             this.description = serverJSON.getString("description");
