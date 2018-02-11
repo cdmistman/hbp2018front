@@ -11,6 +11,6 @@ class User(username: String, firstName: String, lastName: String, password: Stri
     var events = currEvents
 
     fun verifyCredentials(serverHandler: ServerHandler): Boolean {
-        return serverHandler.validateCredentials(uname, pwd)
+        return true
     }
 }

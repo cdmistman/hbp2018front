@@ -11,10 +11,6 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-<<<<<<< HEAD
-=======
-import com.android.volley.Response
->>>>>>> 9d58f8ef31a82957c7ad6131f537c187fd6c1aec
 import com.android.volley.VolleyError
 
 /**
@@ -81,19 +77,11 @@ class SignUpActivity : AppCompatActivity() {
                     editor.putString("user_email", it.email)
                     editor.apply()
                 },
-<<<<<<< HEAD
                 { it: VolleyError? ->
                     TODO()
                 })
-        val intent = Intent(this, JoinCreateActivity::class.java)
-        startActivity(intent)
-=======
-                {it: VolleyError? ->
-                    //Todo(show error)
-                })
         val intent = Intent(this@SignUpActivity, JoinCreateActivity::class.java)
         this@SignUpActivity.startActivity(intent)
->>>>>>> 9d58f8ef31a82957c7ad6131f537c187fd6c1aec
     }
 
     fun checkCredentials(): Boolean {

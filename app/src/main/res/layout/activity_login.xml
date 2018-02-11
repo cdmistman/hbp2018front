@@ -46,7 +46,6 @@
         android:id="@+id/invalid_creds_error"
         android:layout_width="200dp"
         android:layout_height="22dp"
-        android:layout_constraintStart_toStartOf="parent"
         android:text="Invalid Username or Password"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
@@ -54,7 +53,7 @@
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/log_in_button"
         tools:layout_editor_absoluteX="105dp" />
-
+    <!--android:layout_constraintStart_toStartOf="parent"-->
     <Button
         android:id="@+id/log_in_button"
         android:layout_width="215dp"
