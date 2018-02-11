@@ -29,7 +29,7 @@
                 android:value="com.coolkids.todo.getTogether.LogInActivity" />
         </activity>
         <activity
-            android:name=".FullscreenActivity"
+            android:name=".CreateTaskActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen"
             android:theme="@style/FullscreenTheme"></activity>
