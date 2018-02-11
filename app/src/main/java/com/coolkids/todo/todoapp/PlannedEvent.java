@@ -1,5 +1,7 @@
 package com.coolkids.todo.todoapp;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,6 +32,7 @@ public class PlannedEvent {
             this.eventDate = serverJSON.getString("date");
         }
         catch (JSONException e) {
+            Log.d("JSON Error",serverJSON.toString());
             throw new IllegalArgumentException("The JSONObject received from" +
                     " the server doesn't have the right names lol");
         }

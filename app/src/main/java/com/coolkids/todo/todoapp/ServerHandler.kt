@@ -123,6 +123,10 @@ class ServerHandler private constructor() {
         makeObjRequest(Request.Method.DELETE, "/events/"+eventId, addCredentials(HashMap()),callBack,errCallback)
     }
 
+    fun createTask (eventId: String, name: String, description: String, callBack:(ToDoTask) -> Unit, errCallback: (VolleyError?)->Unit = {_->}){
+
+    }
+
     companion object {
 
         private var singleton: ServerHandler = ServerHandler()

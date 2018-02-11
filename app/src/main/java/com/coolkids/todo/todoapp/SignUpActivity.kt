@@ -74,7 +74,6 @@ class SignUpActivity : AppCompatActivity() {
                     editor.putString("first_name", it.fname)
                     editor.putString("last_name", it.lname)
                     editor.putString("user_name", it.uname)
-                    editor.putString("user_email", it.email)
                     editor.apply()
                 },
                 { it: VolleyError? ->
