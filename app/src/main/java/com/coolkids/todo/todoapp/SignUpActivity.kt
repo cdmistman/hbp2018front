@@ -1,6 +1,7 @@
 package com.coolkids.todo.todoapp
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.NavUtils
@@ -56,12 +57,12 @@ class SignUpActivity : AppCompatActivity() {
     private val confirmButton = findViewById<Button>(R.id.cardView2)
 
     // User's information fields
-    private val firstNameField = findViewById<EditText>(R.id.textView4)
-    private val lastNameField = findViewById<EditText>(R.id.textView6)
-    private val userNameField = findViewById<EditText>(R.id.textView7)
-    private val emailField = findViewById<EditText>(R.id.textView8)
-    private val passwordField = findViewById<EditText>(R.id.textView9)
-    private val passwordConfirmField = findViewById<EditText>(R.id.textView10)
+    private val firstNameField = findViewById<EditText>(R.id.first_name_field)
+    private val lastNameField = findViewById<EditText>(R.id.last_name_field)
+    private val userNameField = findViewById<EditText>(R.id.username_field)
+    private val emailField = findViewById<EditText>(R.id.email_field)
+    private val passwordField = findViewById<EditText>(R.id.password_field)
+    private val passwordConfirmField = findViewById<EditText>(R.id.confirm_password_field)
 
     // error text
     private val errorText = findViewById<TextView>(R.id.error_text)
@@ -97,6 +98,8 @@ class SignUpActivity : AppCompatActivity() {
         } catch (e: NullPointerException) {
             throw NullPointerException("You didn't initialize the serverHandler!")
         }
+        val intent = Intent(this, JoinCreateActivity::class.java)
+        startActivity(intent)
     }
 
     fun checkCredentials(): Boolean {
@@ -106,7 +109,7 @@ class SignUpActivity : AppCompatActivity() {
         var userNameAvailable = true
         var emailValid = true
         var passwordValid = true
-        var passwordConfirmed = true
+        var passwordConfirmed = (passwordField.equals(passwordConfirmField))
         return firstNameValid &&
                 lastNameValid &&
                 userNameValid &&
