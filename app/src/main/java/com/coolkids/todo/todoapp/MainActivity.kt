@@ -11,7 +11,7 @@ import android.support.v7.widget.RecyclerView
  */
 class MainActivity : AppCompatActivity() {
     // stuff for the recycler view
-    private var mRecyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+    private var mRecyclerView: RecyclerView? = null
     private var mAdapter : RecyclerView.Adapter<TodoAdapter.ViewHolder>? = null
     private var mLayoutManager : RecyclerView.LayoutManager? = null
 
@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+        mRecyclerView = findViewById<RecyclerView>(R.id.recycler_view)
 
         // get layout manager
         mLayoutManager = LinearLayoutManager(this)
@@ -29,9 +30,9 @@ class MainActivity : AppCompatActivity() {
         mAdapter = TodoAdapter(fetchEvents())
 
         // finish setting up the RecyclerView
-        mRecyclerView.setHasFixedSize(true)
-        mRecyclerView.layoutManager = mLayoutManager
-        mRecyclerView.adapter = mAdapter
+        mRecyclerView!!.setHasFixedSize(true)
+        mRecyclerView!!.layoutManager = mLayoutManager
+        mRecyclerView!!.adapter = mAdapter
     }
 
     fun setServerHandler(handler: ServerHandler) {
