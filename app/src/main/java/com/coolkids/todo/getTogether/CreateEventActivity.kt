@@ -40,10 +40,10 @@ class CreateEventActivity : AppCompatActivity() {
         val eventDateAndTime = eventDate + "T" + eventTime + "Z"
         val eventLocation = eventLocationField!!.text.toString()
         serverHandler!!.createNewEvent(eventName, eventDateAndTime, eventDescription, eventLocation,
-                { it: PlannedEvent ->
-                    TODO()
+                { event: PlannedEvent ->
+                    val
                 },
-                { it: VolleyError? ->
+                { e: VolleyError? ->
                     TODO()
                 })
     }

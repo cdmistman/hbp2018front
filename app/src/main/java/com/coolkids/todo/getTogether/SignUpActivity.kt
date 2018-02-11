@@ -64,23 +64,25 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     fun createUser() {
-        serverHandler?.newUser(firstNameField!!.text.toString(),
+        serverHandler.newUser(firstNameField!!.text.toString(),
                 lastNameField!!.text.toString(),
                 userNameField!!.text.toString(),
                 emailField!!.text.toString(),
                 passwordField!!.text.toString(),
                 { it: AppUser ->
-                    val editor : SharedPreferences.Editor = getSharedPreferences("UserAccount", Context.MODE_PRIVATE).edit()
+                    val editor: SharedPreferences.Editor = getSharedPreferences("UserAccount", Context.MODE_PRIVATE).edit()
                     editor.putString("first_name", it.fname)
                     editor.putString("last_name", it.lname)
                     editor.putString("user_name", it.uname)
                     editor.apply()
+
+                    val goToJoinCreateActivity = Intent(this@SignUpActivity, JoinCreateActivity::class.java)
+                    this@SignUpActivity.startActivity(goToJoinCreateActivity)
                 },
                 { it: VolleyError? ->
-                    TODO()
+                    var signUpFailedError = findViewById<TextView>(R.id.sign_up_failed)
+                    signUpFailedError.visibility = View.VISIBLE
                 })
-        val intent = Intent(this@SignUpActivity, JoinCreateActivity::class.java)
-        this@SignUpActivity.startActivity(intent)
     }
 
     fun checkCredentials(): Boolean {
