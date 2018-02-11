@@ -1,8 +1,11 @@
 package com.coolkids.todo.getTogether
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import android.widget.EditText
+import android.widget.TextView
 import com.android.volley.VolleyError
 
 /**
@@ -41,10 +44,12 @@ class CreateEventActivity : AppCompatActivity() {
         val eventLocation = eventLocationField!!.text.toString()
         serverHandler!!.createNewEvent(eventName, eventDateAndTime, eventDescription, eventLocation,
                 { event: PlannedEvent ->
-                    val
+                    val goToMainActivity = Intent(this@CreateEventActivity, MainActivity::class.java)
+                    this@CreateEventActivity.startActivity(goToMainActivity)
                 },
                 { e: VolleyError? ->
-                    TODO()
+                    val cantCreateEventError = findViewById<TextView>(R.id.cant_create_event_error)
+                    cantCreateEventError.visibility = View.VISIBLE
                 })
     }
 }
