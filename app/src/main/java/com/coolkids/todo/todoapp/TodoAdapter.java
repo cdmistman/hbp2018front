@@ -18,8 +18,8 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
         public ViewHolder(View view) {
             super(view);
-            title = (TextView)view.findViewById(R.id.title);
-            date = (TextView)view.findViewById(R.id.date);
+            title = view.findViewById(R.id.title);
+            date = view.findViewById(R.id.date);
 
         }
     }

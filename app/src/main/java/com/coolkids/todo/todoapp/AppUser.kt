@@ -7,9 +7,9 @@ import org.json.JSONObject
  * Created by colton on 2/10/18.
  */
 class AppUser {
-    var uname = "";
-    var fname = "";
-    var lname = "";
+    var uname = ""
+    var fname = ""
+    var lname = ""
 
     constructor(username: String, firstName: String, lastName: String){
         this.uname = username
@@ -29,8 +29,8 @@ class AppUser {
             throw IllegalArgumentException("The JSONObject received from" + " the server doesn't have the right names lol")
         }
 
-        this.uname = username;
-        this.fname = firstName;
-        this.lname = lastName;
+        this.uname = username
+        this.fname = firstName
+        this.lname = lastName
     }
 }

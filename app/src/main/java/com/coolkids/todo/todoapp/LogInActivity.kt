@@ -6,10 +6,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 
 /**
- * Log in page
+ * Log in pages
  */
 class LogInActivity : AppCompatActivity() {
     // The text fields
@@ -44,8 +43,9 @@ class LogInActivity : AppCompatActivity() {
 
         if (usernameEntered.length == 0 || passwordEntered.length == 0)
         {
-            var loginError = findViewById<TextView>(R.id.invalid_creds_error)
-            loginError.visibility = View.VISIBLE
+            //var loginError = findViewById<TextView>(R.id.invalid_creds_error)
+            //loginError.visibility = View.VISIBLE
+            TODO()
         }
         else
         {

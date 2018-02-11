@@ -25,7 +25,13 @@ class MainActivity : AppCompatActivity() {
 
         // get layout manager
         mLayoutManager = LinearLayoutManager(this)
+    }
 
+    fun setServerHandler(handler: ServerHandler) {
+        this.serverHandler = handler
+    }
+
+    fun setupRecyclerView(events: ArrayList<PlannedEvent>) {
         // set up the adapter
         mAdapter = TodoAdapter(fetchEvents())
 
@@ -33,10 +39,6 @@ class MainActivity : AppCompatActivity() {
         mRecyclerView!!.setHasFixedSize(true)
         mRecyclerView!!.layoutManager = mLayoutManager
         mRecyclerView!!.adapter = mAdapter
-    }
-
-    fun setServerHandler(handler: ServerHandler) {
-        this.serverHandler = handler
     }
 
     fun fetchEvents() : ArrayList<PlannedEvent> {
