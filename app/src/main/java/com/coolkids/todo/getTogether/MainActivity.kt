@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.widget.TextView
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -43,10 +44,17 @@ class MainActivity : AppCompatActivity() {
         mRecyclerView!!.setHasFixedSize(true)
         mRecyclerView!!.layoutManager = mLayoutManager
         mRecyclerView!!.adapter = mAdapter
+
+        Log.d("EventsList", events.toString())
+        var noEventsText = findViewById<TextView>(R.id.title_text)
+        if(events.isEmpty()){
+            noEventsText.visibility = TextView.VISIBLE
+        } else{
+            noEventsText.visibility = TextView.GONE
+        }
     }
 
     fun fetchEvents() {
-        Log.d("Fetchevents","will fetch events")
         this.serverHandler!!.fetchEvents({events -> setupRecyclerView(events);})
     }
 }
