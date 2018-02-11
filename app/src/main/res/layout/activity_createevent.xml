@@ -111,8 +111,6 @@
         android:id="@+id/event_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
-=======
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ems="10"
@@ -126,7 +124,6 @@
         android:id="@+id/event_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
->>>>>>> e6817c54110b8d3a75ffead9545b0f0c22e16b38
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
@@ -134,15 +131,12 @@
         android:hint="Date/Time"
         android:inputType="text|datetime"
         app:layout_constraintEnd_toEndOf="parent"
-<<<<<<< HEAD
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/event_description" />
-=======
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toEndOf="@+id/event_date"
         app:layout_constraintTop_toBottomOf="@+id/create_task_title" />
->>>>>>> e6817c54110b8d3a75ffead9545b0f0c22e16b38
 
     <TextView
         android:id="@+id/cant_create_event_error"
@@ -154,11 +148,7 @@
         android:text="Unable to create Event!"
         android:textColor="@color/colorAccent"
         android:visibility="gone"
-<<<<<<< HEAD
         app:layout_constraintBottom_toTopOf="@+id/go_to_main_button"
-=======
-        app:layout_constraintBottom_toTopOf="@+id/create_task_button"
->>>>>>> e6817c54110b8d3a75ffead9545b0f0c22e16b38
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
