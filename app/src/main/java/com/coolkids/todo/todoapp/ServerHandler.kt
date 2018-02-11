@@ -98,9 +98,27 @@ class ServerHandler private constructor() {
     fun createNewEvent(title:String, date:String, description:String, location:String,
                        callBack:(PlannedEvent) -> Unit, errCallback: (VolleyError?)->Unit = {_->}){
         makeObjRequest(Request.Method.POST,"/events",
-                addCredentials(mapOf("title" to title, "date" to date, "location" to location)),
-                {jsobj->callBack(PlannedEvent(jsobj))},errCallback);
+                addCredentials(mapOf("title" to title, "description" to description, "date" to date, "location" to location)),
+                {jsobj->callBack(PlannedEvent(jsobj))},errCallback)
     }
+
+    fun fetchOneEvent(eventId:String, callback: (PlannedEvent)->Unit, errCallback: (VolleyError?)->Unit = {_->}){
+        makeObjRequest(Request.Method.POST, "/events/"+eventId, addCredentials(HashMap()),
+                {jsobj->callback(PlannedEvent(jsobj))},errCallback)
+    }
+
+    fun joinEvent(eventId:String, callback: (PlannedEvent)->Unit, errCallback: (VolleyError?) -> Unit = { _->}){
+        makeObjRequest(Request.Method.POST, "/events/"+eventId+"/join", addCredentials(HashMap()),
+                {jsobj->callback(PlannedEvent(jsobj))},errCallback)
+    }
+
+    fun updateEvent (eventId:String, title:String, date:String, description:String, location:String,
+                     callBack:(PlannedEvent) -> Unit, errCallback: (VolleyError?)->Unit = {_->}){
+        makeObjRequest(Request.Method.PUT,"/events/"+eventId,
+                addCredentials(mapOf("title" to title, "description" to description, "date" to date, "location" to location)),
+                {jsobj->callBack(PlannedEvent(jsobj))},errCallback)
+    }
+    
 
     companion object {
 
