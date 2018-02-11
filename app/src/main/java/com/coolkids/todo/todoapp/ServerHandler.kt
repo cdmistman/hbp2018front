@@ -40,14 +40,12 @@ class ServerHandler private constructor() {
         return m
     }
 
-    fun makeObjRequest(url: String, params: Map<String, String>,
+    fun makeObjRequest(method:Int, url: String, params: Map<String, String>,
                        callback: (JSONObject) -> Unit, errCallback: Response.ErrorListener?) {
-        Log.d("Fetchevents","B")
         val request = JsonObjectRequest(
                 Request.Method.POST, server + url, JSONObject(params),
                 object: Response.Listener<JSONObject>{
                     override fun onResponse(response: JSONObject) {
-                        Log.d("Fetchevents","C")
                         callback(response)
                     }
                 },
@@ -58,9 +56,6 @@ class ServerHandler private constructor() {
                 });
 
         queue.add(request)
-
-        Log.d("Fetchevents","D")
-
     }
 
 
@@ -80,7 +75,7 @@ class ServerHandler private constructor() {
         }
 
         makeObjRequest(
-                "/users", req,
+                Request.Method.POST,"/users", req,
                 jsArrToEvents, errCallback)
     }
 
@@ -96,7 +91,7 @@ class ServerHandler private constructor() {
             }
             callback(ret)
         }
-        makeObjRequest("/events/all", addCredentials(HashMap<String,String>()),jsArrToEvents,null);
+        makeObjRequest(Request.Method.POST,"/events/all", addCredentials(HashMap<String,String>()),jsArrToEvents,null);
     }
 
     companion object {
