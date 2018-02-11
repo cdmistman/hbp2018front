@@ -30,14 +30,12 @@ class ServerHandler private constructor() {
         queue.start()
     }
 
-    fun validateCredentials(username: String, password: String): Boolean {
-        return true
-    }
 
-    fun addCredentials(m: MutableMap<String, String>): Map<String, String> {
-        m["uname"] = uname
-        m["password"] = pass
-        return m
+    fun addCredentials(m: Map<String, String>): Map<String, String> {
+        var n = HashMap(m)
+        n["uname"] = uname
+        n["password"] = pass
+        return n
     }
 
     fun makeObjRequest(method:Int, url: String, params: Map<String, String>,
@@ -60,6 +58,11 @@ class ServerHandler private constructor() {
     }
 
 
+    fun validateCredentials(username: String, password: String,
+                            callback: (AppUser) -> Unit, errCallback: (VolleyError?)->Unit = {_->}) {
+        makeObjRequest(Request.Method.POST,"/users/current", mapOf("uname" to username, "password" to password),
+                {resp->callback(AppUser(resp))}, errCallback);
+    }
 
     fun newUser(firstName: String, lastName: String, username: String,
                 email: String, password: String,
@@ -92,8 +95,11 @@ class ServerHandler private constructor() {
         makeObjRequest(Request.Method.POST,"/events/all", addCredentials(HashMap<String,String>()),jsArrToEvents,errCallback);
     }
 
-    fun createNewEvent(callBack:(PlannedEvent) -> Unit){
-
+    fun createNewEvent(title:String, date:String, description:String, location:String,
+                       callBack:(PlannedEvent) -> Unit, errCallback: (VolleyError?)->Unit = {_->}){
+        makeObjRequest(Request.Method.POST,"/events",
+                addCredentials(mapOf("title" to title, "date" to date, "location" to location)),
+                {jsobj->callBack(PlannedEvent(jsobj))},errCallback);
     }
 
     companion object {
