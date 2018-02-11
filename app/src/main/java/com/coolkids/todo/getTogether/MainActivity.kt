@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private var mAdapter : RecyclerView.Adapter<TodoAdapter.ViewHolder>? = null
     private var mLayoutManager : RecyclerView.LayoutManager? = null
 
-    private var serverHandler : ServerHandler? = null
+    private var serverHandler = ServerHandler.serverHandler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,10 +32,6 @@ class MainActivity : AppCompatActivity() {
         this.serverHandler = ServerHandler.serverHandler
 
         fetchEvents()
-    }
-
-    fun setServerHandler(handler: ServerHandler) {
-        this.serverHandler = handler
     }
 
     fun setupRecyclerView(events: ArrayList<PlannedEvent>) {
