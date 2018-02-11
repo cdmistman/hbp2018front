@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -25,6 +26,9 @@ class MainActivity : AppCompatActivity() {
 
         // get layout manager
         mLayoutManager = LinearLayoutManager(this)
+        this.serverHandler = ServerHandler.serverHandler
+
+        fetchEvents()
     }
 
     fun setServerHandler(handler: ServerHandler) {
@@ -42,6 +46,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun fetchEvents() {
+        Log.d("Fetchevents","will fetch events")
         this.serverHandler!!.fetchEvents({events -> setupRecyclerView(events);})
     }
 }

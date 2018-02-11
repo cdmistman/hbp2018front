@@ -1,12 +1,9 @@
 package com.coolkids.todo.todoapp
 
 
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.VolleyError
-import com.android.volley.toolbox.JsonArrayRequest
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.JsonRequest
+import android.util.Log
+import com.android.volley.*
+import com.android.volley.toolbox.*
 import org.json.JSONArray
 
 import org.json.JSONObject
@@ -15,16 +12,23 @@ import java.util.ArrayList
 import java.util.HashMap
 import java.util.function.Consumer
 
+
 /**
  * Handles the interactions with the server
  */
 
 class ServerHandler private constructor() {
-
-    internal var server: String = "http://localhost"
+    var cache: Cache = NoCache()
+    var network: Network = BasicNetwork(HurlStack())
+    internal var queue: RequestQueue = RequestQueue(cache, network)
+    internal var server: String = "https://hbptodoapp.herokuapp.com"
     internal var port: Int = 80
     internal var uname: String = "joe9"
     internal var pass: String = "secret"
+
+    init {
+        queue.start()
+    }
 
     fun validateCredentials(username: String, password: String): Boolean {
         return true
@@ -38,13 +42,25 @@ class ServerHandler private constructor() {
 
     fun makeObjRequest(url: String, params: Map<String, String>,
                        callback: (JSONObject) -> Unit, errCallback: Response.ErrorListener?) {
+        Log.d("Fetchevents","B")
         val request = JsonObjectRequest(
                 Request.Method.POST, server + url, JSONObject(params),
                 object: Response.Listener<JSONObject>{
                     override fun onResponse(response: JSONObject) {
-                        callback(response);
+                        Log.d("Fetchevents","C")
+                        callback(response)
                     }
-                }, errCallback);
+                },
+                object:Response.ErrorListener{
+                    override fun onErrorResponse(error: VolleyError?) {
+                        Log.e("Fetchevents",error.toString())
+                    }
+                });
+
+        queue.add(request)
+
+        Log.d("Fetchevents","D")
+
     }
 
 
@@ -69,15 +85,17 @@ class ServerHandler private constructor() {
     }
 
     fun fetchEvents(callback:(ArrayList<PlannedEvent>) -> Unit) {
-        val jsArrToEvents = {jsobj: JSONObject ->
+        Log.d("Fetchevents","A")
+        val jsArrToEvents = { jsobj: JSONObject ->
             val jsarr = jsobj.getJSONArray("events");
-            var ret:ArrayList<PlannedEvent> = ArrayList<PlannedEvent>()
-            for(i in 0..jsarr.length()-1){
+            val f : String = jsarr.toString();
+            Log.d("Fetchevents",f)
+            var ret: ArrayList<PlannedEvent> = ArrayList<PlannedEvent>()
+            for (i in 0..jsarr.length() - 1) {
                 ret.add(PlannedEvent(jsarr.getJSONObject(i)))
             }
             callback(ret)
         }
-
         makeObjRequest("/events/all", addCredentials(HashMap<String,String>()),jsArrToEvents,null);
     }
 
