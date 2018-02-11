@@ -118,7 +118,10 @@ class ServerHandler private constructor() {
                 addCredentials(mapOf("title" to title, "description" to description, "date" to date, "location" to location)),
                 {jsobj->callBack(PlannedEvent(jsobj))},errCallback)
     }
-    
+
+    fun deleteEvent (eventId: String,  callBack:(JSONObject) -> Unit, errCallback: (VolleyError?)->Unit = {_->}){
+        makeObjRequest(Request.Method.DELETE, "/events/"+eventId, addCredentials(HashMap()),callBack,errCallback)
+    }
 
     companion object {
 
