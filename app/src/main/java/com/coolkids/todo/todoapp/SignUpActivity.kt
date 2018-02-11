@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.android.volley.Response
+import com.android.volley.VolleyError
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -38,7 +39,7 @@ class SignUpActivity : AppCompatActivity() {
     private var errorText: TextView? = null
 
     // server handler for communicating with the server
-    private var serverHandler: ServerHandler? = null
+    private var serverHandler: ServerHandler = ServerHandler.serverHandler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,9 +78,11 @@ class SignUpActivity : AppCompatActivity() {
                     editor.putString("user_email", it.email)
                     editor.apply()
                 },
-                Response.ErrorListener { TODO() })
-        val intent = Intent(this, JoinCreateActivity::class.java)
-        startActivity(intent)
+                {it: VolleyError? ->
+                    //Todo(show error)
+                })
+        val intent = Intent(this@SignUpActivity, JoinCreateActivity::class.java)
+        this@SignUpActivity.startActivity(intent)
     }
 
     fun checkCredentials(): Boolean {
