@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
     fun setupRecyclerView(events: ArrayList<PlannedEvent>) {
         // set up the adapter
-        mAdapter = TodoAdapter(fetchEvents())
+        mAdapter = TodoAdapter(events)
 
         // finish setting up the RecyclerView
         mRecyclerView!!.setHasFixedSize(true)
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         mRecyclerView!!.adapter = mAdapter
     }
 
-    fun fetchEvents() : ArrayList<PlannedEvent> {
-        return this.serverHandler!!.fetchEvents()
+    fun fetchEvents() {
+        this.serverHandler!!.fetchEvents({events -> setupRecyclerView(events);})
     }
 }
