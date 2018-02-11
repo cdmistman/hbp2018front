@@ -22,7 +22,7 @@ public class PlannedEvent {
     public PlannedEvent(JSONObject serverJSON) {
         try {
             this.name = serverJSON.getString("title");
-            this.owner = parseAppUser(serverJSON.getJSONObject("owner"));
+            this.owner = new AppUser(serverJSON.getJSONObject("owner"));
             this.eventID = serverJSON.getString("event ID");
             this.users = parseUsers(serverJSON.getJSONArray("users"));
             this.tasks = parseTasks(serverJSON.getJSONArray("tasks"));
@@ -35,27 +35,12 @@ public class PlannedEvent {
         }
     }
 
-    private AppUser parseAppUser(JSONObject userJSON) {
-        String username;
-        String firstName;
-        String lastName;
-        try {
-            username = userJSON.getString("username");
-            firstName = userJSON.getString("first name");
-            lastName = userJSON.getString("last name");
-        }
-        catch (JSONException e) {
-            throw new IllegalArgumentException("The JSONObject received from" +
-                    " the server doesn't have the right names lol");
-        }
-        return new AppUser(username, firstName, lastName);
-    }
 
     private ArrayList<AppUser> parseUsers(JSONArray usersJSON) {
         ArrayList<AppUser> parsedUsers = new ArrayList<>();
         for (int i = 0; i < usersJSON.length(); i++) {
             try {
-                parsedUsers.add(parseAppUser(usersJSON.getJSONObject(i)));
+                parsedUsers.add(new AppUser(usersJSON.getJSONObject(i)));
             }
             catch (JSONException e) {
                 throw new IllegalArgumentException("The JSONObject received from" +
@@ -87,7 +72,7 @@ public class PlannedEvent {
             if (isAssigned) {
                 AppUser assignedTo;
                 try {
-                    assignedTo = parseAppUser(thisTask.getJSONObject("assigned to"));
+                    assignedTo = new AppUser(thisTask.getJSONObject("assigned to"));
                 }
                 catch (JSONException e) {
                     throw new IllegalArgumentException("The JSONObject received from" +
