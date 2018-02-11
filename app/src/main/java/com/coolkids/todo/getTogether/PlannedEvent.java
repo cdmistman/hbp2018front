@@ -58,6 +58,7 @@ public class PlannedEvent {
         for (int i = 0; i < tasksJSON.length(); i++) {
             JSONObject thisTask;
             boolean isAssigned;
+            boolean completed;
             int id;
             String name;
             String description;
@@ -65,6 +66,7 @@ public class PlannedEvent {
                 thisTask = tasksJSON.getJSONObject(i);
                 id = thisTask.getInt("task id");
                 name = thisTask.getString("name");
+                completed = thisTask.getBoolean("completed");
                 description = thisTask.getString("description");
                 isAssigned = thisTask.getBoolean("is assigned");
             }
@@ -81,9 +83,9 @@ public class PlannedEvent {
                     throw new IllegalArgumentException("The JSONObject received from" +
                             " the server doesn't have the right names lol");
                 }
-                parsedTasks.add(new ToDoTask(id, name, description, isAssigned, assignedTo));
+                parsedTasks.add(new ToDoTask(id, name, description, completed, isAssigned, assignedTo));
             } else {
-                parsedTasks.add(new ToDoTask(id, name, description, isAssigned));
+                parsedTasks.add(new ToDoTask(id, name, description, completed, isAssigned, null));
             }
         }
         return parsedTasks;

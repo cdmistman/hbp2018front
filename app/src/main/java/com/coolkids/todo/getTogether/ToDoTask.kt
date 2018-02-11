@@ -11,12 +11,14 @@ class ToDoTask {
     var name = ""
     var description = ""
     var isAssigned = false
+    var completed = false
     var assignedTo : AppUser? = null
 
-    constructor(taskID: Int, taskName: String, taskDescription: String, taskAssigned: Boolean, taskAssignedTo: AppUser){
+    constructor(taskID: Int, taskName: String, taskDescription: String, isCompleted:Boolean, taskAssigned: Boolean, taskAssignedTo: AppUser){
         id = taskID
         name=taskName
         description=taskDescription
+        completed = isCompleted
         isAssigned=taskAssigned
         assignedTo = taskAssignedTo
     }
@@ -26,6 +28,7 @@ class ToDoTask {
             id = jsobj.getInt("id")
             name = jsobj.getString("name")
             description = jsobj.getString("description")
+            completed = jsobj.getBoolean("completed")
             isAssigned = jsobj.getBoolean("isAssigned")
             if (isAssigned) {
                 assignedTo = AppUser(jsobj.getJSONObject("assignedTo"))
