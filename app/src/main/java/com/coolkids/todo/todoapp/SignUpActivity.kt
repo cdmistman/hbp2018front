@@ -26,7 +26,7 @@ class SignUpActivity : AppCompatActivity() {
      * while interacting with activity UI.
      */
     // Register button
-    private val confirmButton = findViewById<Button>(R.id.cardView2)
+    private val confirmButton = findViewById<Button>(R.id.confirm_button)
 
     // User's information fields
     private val firstNameField = findViewById<EditText>(R.id.first_name_field)
