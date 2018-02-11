@@ -51,7 +51,7 @@ class ServerHandler private constructor() {
 
     fun newUser(firstName: String, lastName: String, username: String,
                 email: String, password: String,
-                callback: Response.Listener<User>, errCallback: Response.ErrorListener) {
+                callback: (AppUser) -> Unit, errCallback: Response.ErrorListener?) {
         val req = HashMap<String, String>()
         req["firstName"] = firstName
         req["lastName"] = lastName
@@ -59,9 +59,13 @@ class ServerHandler private constructor() {
         req["email"] = email
         req["password"] = password
 
-       /* val request = JsonObjectRequest(
-                Request.Method.POST, server + "/users", JSONObject(req),
-                callback, errCallback)*/
+        val jsArrToEvents = {jsobj: JSONObject ->
+            callback(AppUser(jsobj))
+        }
+
+        makeObjRequest(
+                "/users", req,
+                jsArrToEvents, errCallback)
     }
 
     fun fetchEvents(callback:(ArrayList<PlannedEvent>) -> Unit) {
